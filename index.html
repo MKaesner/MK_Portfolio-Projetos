@@ -51,8 +51,8 @@
         <ul>
           <li><a href="#hero" class="active">Inicio</a></li>
           <li><a href="#about">Sobre Mim</a></li>
-          <li><a href="#Portfolio">Portfólio</a></li>
-          <li><a href="#footer">Contato</a></li>
+          <li><a href="#portfolio">Portfólio</a></li>
+          <li><a href="#contact">Contato</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -456,7 +456,40 @@
       </div>
 
     </section><!-- /Portfolio Section -->
-
+    
+    <!-- Contact Section - NOVA SEÇÃO -->
+    <section id="contact" class="contact section light-background">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contato</h2>
+        <p>Entre em contato para discutir oportunidades e projetos.</p>
+      </div>
+      
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
+          <div class="col-lg-4">
+            <div class="contact-info">
+              <h4>Informações</h4>
+              <p><strong>Nome:</strong> Mario Erico</p>
+              <p><strong>Cargo:</strong> Analista ERP/TI/Dados</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="contact-info">
+              <h4>Contato</h4>
+              <p><strong>Email:</strong> <a href="mailto:mkaesner@hotmail.com">mkaesner@hotmail.com</a></p>
+              <p><strong>Telefone:</strong> (81) 98546-3019</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="contact-info">
+              <h4>Redes</h4>
+              <p><strong>GitHub:</strong> <a href="https://github.com/MKaesner">@MKaesner</a></p>
+              <p><strong>LinkedIn:</strong> Mario Erico</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Contact Section -->
 
   </main>
 
@@ -506,28 +539,43 @@
   
   <!-- Script de navegação suave ADICIONE AQUI -->
 <script>
+
+</script>
 document.addEventListener('DOMContentLoaded', function() {
-  const navLinks = document.querySelectorAll('#navmenu a');
+  // Seleciona TODOS os links de navegação (inclui mobile toggle)
+  const navLinks = document.querySelectorAll('#navmenu a[href^="#"]');
   
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
+      e.stopPropagation();
+      
       const targetId = this.getAttribute('href');
       const targetSection = document.querySelector(targetId);
       
       if (targetSection) {
-        const offsetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - 80;
+        const headerHeight = document.querySelector('#header').offsetHeight;
+        const offsetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+        
         window.scrollTo({
           top: offsetTop,
           behavior: 'smooth'
         });
         
+        // Remove active de todos e adiciona no clicado
         navLinks.forEach(l => l.classList.remove('active'));
         this.classList.add('active');
+        
+        // Fecha menu mobile se aberto
+        const mobileToggle = document.querySelector('.mobile-nav-toggle');
+        if (mobileToggle && window.innerWidth <= 1199) {
+          mobileToggle.click();
+        }
       }
     });
   });
 });
+
 </script>
 
 </body>
