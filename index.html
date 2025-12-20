@@ -49,10 +49,10 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero" class="active">Inicio<br></a></li>
-          <li><a href="#Sobre">Sobre Mim</a></li>
-          <li><a href="#Portfolio">Portfolio</a></li>
-          <li><a href="#Contatos">Contato</a></li>
+          <li><a href="#hero" class="active">Inicio</a></li>
+          <li><a href="#about">Sobre Mim</a></li>
+          <li><a href="#Portfolio">Portfólio</a></li>
+          <li><a href="#footer">Contato</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -460,7 +460,7 @@
 
   </main>
 
-  <footer id="footer" class="footer accent-background">
+  <footer id="footer" class="footer accent-background contact-section">
 
     <div class="container">
       <div class="copyright text-center ">
@@ -503,8 +503,33 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  
+  <!-- Script de navegação suave ADICIONE AQUI -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const navLinks = document.querySelectorAll('#navmenu a');
+  
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      
+      if (targetSection) {
+        const offsetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+        
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      }
+    });
+  });
+});
+</script>
 
 </body>
 
 </html>
-
