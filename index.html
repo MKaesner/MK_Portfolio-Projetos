@@ -536,47 +536,46 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-  
-  <!-- Script de navegação suave ADICIONE AQUI -->
-<script>
 
-</script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Seleciona TODOS os links de navegação (inclui mobile toggle)
-  const navLinks = document.querySelectorAll('#navmenu a[href^="#"]');
-  
-  navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const targetId = this.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
-      
-      if (targetSection) {
-        const headerHeight = document.querySelector('#header').offsetHeight;
-        const offsetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+  <!-- Script de navegação suave -->
+
+  <script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Seleciona TODOS os links de navegação (inclui mobile toggle)
+    const navLinks = document.querySelectorAll('#navmenu a[href^="#"]');
+    
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
         
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        });
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
         
-        // Remove active de todos e adiciona no clicado
-        navLinks.forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-        
-        // Fecha menu mobile se aberto
-        const mobileToggle = document.querySelector('.mobile-nav-toggle');
-        if (mobileToggle && window.innerWidth <= 1199) {
-          mobileToggle.click();
+        if (targetSection) {
+          const headerHeight = document.querySelector('#header').offsetHeight;
+          const offsetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+          
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+          
+          // Remove active de todos e adiciona no clicado
+          navLinks.forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Fecha menu mobile se aberto
+          const mobileToggle = document.querySelector('.mobile-nav-toggle');
+          if (mobileToggle && window.innerWidth <= 1199) {
+            mobileToggle.click();
+          }
         }
-      }
+      });
     });
   });
-});
-
-</script>
+  </script>
 
 </body>
 
